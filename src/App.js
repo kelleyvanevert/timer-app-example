@@ -44,17 +44,25 @@ class App extends Component {
   }
 
   resetSingleTimer (timerObject) {
-    let timers = this.state.timers.slice();
-    
-    let i = timers.indexOf(timerObject)
-    timers.splice(i, 1, {
-      id: timerObject.id,
-      time: 180,
-    });
-
     this.setState({
-      timers: timers,
+      timers: this.state.timers.map(
+        timer => (timer === timerObject)
+          ? { ...timer, time: 180 }
+          : timer
+      ),
     })
+
+//    let timers = this.state.timers.slice();
+//    
+//    let i = timers.indexOf(timerObject)
+//    timers.splice(i, 1, {
+//      id: timerObject.id,
+//      time: 180,
+//    });
+//
+//    this.setState({
+//      timers: timers,
+//    })
   }
 
   render () {
